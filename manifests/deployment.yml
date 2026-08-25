@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: obsidian-wiki
+  namespace: wiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: obsidian-wiki
+  template:
+    metadata:
+      labels:
+        app: obsidian-wiki
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: obsidian-wiki
+          image: ghcr.io/kkw855/obsidian-wiki:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: obsidian-wiki-service
+  namespace: wiki
+spec:
+  selector:
+    app: obsidian-wiki
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 80

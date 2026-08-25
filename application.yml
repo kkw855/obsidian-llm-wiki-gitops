@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: obsidian-wiki
+  namespace: argocd
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: wiki
+  project: default
+  source:
+    repoURL: https://github.com/kkw855/obsidian-llm-wiki-gitops.git
+    targetRevision: HEAD
+    path: manifests
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
