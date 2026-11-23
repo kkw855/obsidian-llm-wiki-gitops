@@ -17,7 +17,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: obsidian-wiki
-          image: ghcr.io/kkw855/obsidian-wiki:cd1920f888bd6914a4ddf684744355a8d1d3723c
+          image: ghcr.io/kkw855/obsidian-wiki:f22bf722ed126ccf8f73245214688ab0ed0207d6
           ports:
             - containerPort: 80
 ---
